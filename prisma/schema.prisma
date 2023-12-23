@@ -9,3 +9,46 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Game {
+  id           Int         @id @default(autoincrement())
+  name         String
+  description  String
+  release_date DateTime
+  publisher_id Int
+  publisher    Publisher   @relation(fields: [publisher_id], references: [id])
+  developer_id Int
+  developer    Developer   @relation(fields: [developer_id], references: [id])
+  GameImage    GameImage[]
+}
+
+model Publisher {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  avatar_url  String
+  games       Game[]
+}
+
+model Developer {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  avatar_url  String
+  games       Game[]
+}
+
+model GameImage {
+  id          Int    @id @default(autoincrement())
+  url         String
+  description String
+  game_id     Int
+  game        Game   @relation(fields: [game_id], references: [id])
+}
+
+model UserGame {
+  id          Int      @id @default(autoincrement())
+  user_id     String
+  game_id     Int
+  bought_date DateTime @default(now())
+}
