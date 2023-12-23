@@ -13,6 +13,7 @@ export class AppController {
     metadata: Metadata,
     call: ServerUnaryCall<any, any>,
   ) {
-    return await this.appService.getUsersOfGame(data.gameID);
+    const users = await this.appService.getUsersOfGame(data.gameID);
+    return { users };
   }
 }

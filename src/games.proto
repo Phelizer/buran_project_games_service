@@ -3,7 +3,7 @@ syntax = "proto3";
 package games;
 
 service Games {
-    rpc GetUsersOfGame () returns () {}
+    rpc GetUsersOfGame (GetUsersOfGameRequest) returns (GetUsersOfGameResponse);
 }
 
 message GetUsersOfGameRequest {
@@ -20,7 +20,7 @@ message User {
     string last_name = 3;
     string email = 4;
     string registration_date = 5;
-    int age = 6;
+    uint32 age = 6;
     string sex = 7;
     repeated string roles = 8;
 }
