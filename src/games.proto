@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package games;
+
+service Games {
+    rpc GetUsersOfGame () returns () {}
+}
+
+message GetUsersOfGameRequest {
+    string gameID = 1;
+}
+
+message GetUsersOfGameResponse {
+    repeated User users = 1;
+}
+
+message User {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string registration_date = 5;
+    int age = 6;
+    string sex = 7;
+    repeated string roles = 8;
+}
